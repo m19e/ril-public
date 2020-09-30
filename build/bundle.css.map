@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "App.svelte"
+  ],
+  "sourcesContent": [
+    "<script lang=\"ts\">export let name;\n$: targetURL = \"\";\nimport axios from \"axios\";\nconst config = {\n    headers: {\n        Accept: \"application/json\",\n        \"Content-type\": \"application/json\",\n    },\n};\nconst main = () => {\n    chrome.tabs.getSelected(null, (tab) => {\n        const requestURL = localStorage.getItem(\"request_url\");\n        const username = localStorage.getItem(\"username\");\n        const text = tab.title + \" : \" + tab.url;\n        targetURL = text;\n        const postData = {\n            username: \"Later\",\n            content: text,\n        };\n        axios.post(requestURL, postData, config);\n    });\n};\nmain();\n</script>\n\n<style>\n    main {\n        text-align: center;\n        padding: 1em;\n        max-width: 240px;\n        margin: 0 auto;\n    }\n\n    h1 {\n        color: #ff3e00;\n        text-transform: uppercase;\n        font-weight: 100;\n    }\n\n    @media (min-width: 640px) {\n        main {\n            max-width: none;\n        }\n    }\n</style>\n\n<main>\n    <h1>Read it later!</h1>\n</main>\n"
+  ],
+  "names": [],
+  "mappings": "AA0BI,IAAI,eAAC,CAAC,AACF,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,GAAG,CACZ,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAClB,CAAC,AAED,EAAE,eAAC,CAAC,AACA,KAAK,CAAE,OAAO,CACd,cAAc,CAAE,SAAS,CACzB,WAAW,CAAE,GAAG,AACpB,CAAC,AAED,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AACvB,IAAI,eAAC,CAAC,AACF,SAAS,CAAE,IAAI,AACnB,CAAC,AACL,CAAC"
+}
